@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 Passkey to Arweave Wallet Mapping
 
-## Getting Started
+A lightweight demo that links a **WebAuthn passkey** to an **Arweave wallet**, letting users authenticate with passkeys instead of the traditional wallet connect flow.
 
-First, run the development server:
+Built with Next.js, ArConnect, and `@simplewebauthn`.
+
+---
+
+## 🌐 Run code
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/yourname/passkey-wallet-map.git
+cd passkey-wallet-map
+npm install
+npm run dev ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Register a Passkey**  
+   Uses the browser’s WebAuthn API to generate a passkey (credential ID) stored on the user’s device.
 
-## Learn More
+2. **Connect an Arweave Wallet**  
+   Uses ArConnect to request permissions and get the active wallet address.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Create a Mapping**  
+   Stores a mapping of `credentialID <-> walletAddress` and uploads it to Arweave as a signed transaction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Log In with Passkey**  
+   Authenticates the user via passkey, fetches the mapped wallet from Arweave, and logs them in without needing to connect again.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js 14**
+- **Tailwind CSS**
+- **ArConnect** for wallet access
+- **@simplewebauthn/browser/server** for passkey handling
+- **Arweave** for decentralized storage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔐 Future Plans
+
+- Encrypt the credential ID before uploading to Arweave
+- Make it fully backendless (no database required)
+- SDK version for other Arweave apps
+- Optional QR or password manager integration for syncing across devices
+
+---
